@@ -17,8 +17,10 @@ class ProjectController extends Controller
 
         foreach ($projects as $project) {
             if ($project->image) $project->image = url('storage/' . $project->image);
+            foreach ($project['technologies'] as $technology) {
+                if ($technology->logo) $technology->logo = url('storage/' . $technology->logo);
+            }
         }
-
         return response()->json($projects);
     }
 
